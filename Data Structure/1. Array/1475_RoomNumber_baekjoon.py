@@ -16,17 +16,22 @@
 
 # Ans.1
 def roomNumber(N):
-
+    # 방 번호를 문자열로 변환 후 리스트로 생성
     N = list(str(N))
+
+    # 숫자 개수 세기 위해 리스트 초기화
     count = [0] * 10
 
+    # N에 포함된 각 숫자의 개수 세기
     for char in N:
-        index = int(char)
+        index = int(char) # 문자에서 정수로 변환
         count[index] += 1
 
-    count[6] = (count[6] + count[9] + 1) // 2
-    count[9] = count[6]
+    # 6과 9의 개수 합치기
+    count[6] = (count[6] + count[9] + 1) // 2 # 홀수 처리를 위해 1 더한 후 나누기
+    count[9] = count[6] # 6과 9는 함께 사용 가능
 
+    # 6과 9의 개수 제외하고 나머지 숫자 중 최대 개수 찾기
     max_count = max(count)
 
     return max_count
