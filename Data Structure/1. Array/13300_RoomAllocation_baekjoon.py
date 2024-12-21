@@ -35,17 +35,45 @@
 '''
 
 # Ans.1
-def roomAllocation(N, K, S, Y):
+def roomAllocation(N, K, students):
+    # 학생 수를 학년, 성별로 그룹화하기 위한 딕셔너리 생성
+    groups = {}
 
-    return min_room
+    for student in students:
+        S, Y = student
+        # 그룹 키 생성
+        key = (S, Y)
+
+        # 각 성별, 학년별로 그룹 생성 후 해당 그룹이 딕셔너리에 존재하지 않으면 0으로 할당 후 1 증가
+        # 존재하면 groups[key] 값 증가
+        if key not in groups:
+            groups[key] = 0
+        groups[key] += 1
+
+    total_rooms = 0
+
+    # 각 그룹별 필요한 방의 수 계산
+    for count in groups.values():
+        # 정수 나눗셈(소수점 아래 올림 처리)
+        total_rooms += (count + K - 1) // K
+
+    return total_rooms
 
 
 # 입력 처리
 if __name__ == "__main__":
-    student = int()
+    # 1번째 줄 입력 처리
+    N, K = map(int, input().split())
+
+    students = []
+
+    # N개의 학생 정보 입력 처리
+    for _ in range(N):
+        S, Y = map(int, input().split())
+        students.append((S, Y))
 
     # 함수 호출
-    result = roomAllocation()
+    result = roomAllocation(N, K, students)
 
     # 결과 출력
     print(result)
