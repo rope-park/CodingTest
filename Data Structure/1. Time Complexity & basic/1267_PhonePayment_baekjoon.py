@@ -26,6 +26,7 @@ def phonePayment(N, timeList):
     ys = 0
     ms = 0
     for time in timeList:
+        # 기본 요금 잊지 말고 더해주기
         ys += ((time//30)+1)*10
         ms += ((time//60)+1)*15
 
@@ -41,3 +42,4 @@ if __name__ == "__main__":
     N = int(input())
     timeList = list(map(int, input().split()))
     print(*phonePayment(N, timeList))
+    
